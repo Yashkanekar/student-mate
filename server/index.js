@@ -7,7 +7,6 @@ const OpenAI = require("openai");
 const path = require("path");
 require("dotenv").config();
 
-
 const PptxParser = require("node-pptx-parser").default;
 const fs = require("fs").promises;
 const os = require("os");
@@ -24,32 +23,25 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-
 async function extractPdfText(buffer) {
   const data = await pdfParse(buffer);
   return data.text;
 }
-
 
 async function extractDocText(buffer) {
   const result = await mammoth.extractRawText({ buffer });
   return result.value;
 }
 
-
 async function extractPptxText(buffer) {
   try {
-
     const tempFilePath = path.join(os.tmpdir(), `temp-${Date.now()}.pptx`);
     await fs.writeFile(tempFilePath, buffer);
-
 
     const parser = new PptxParser(tempFilePath);
     const textContent = await parser.extractText();
 
-
     await fs.unlink(tempFilePath);
-
 
     const allText = textContent
       .map((slide, index) => {
@@ -162,21 +154,18 @@ app.post(
           .json({ error: "Please upload a PowerPoint file (.ppt or .pptx)" });
       }
 
-
       const extractedText = await extractPptxText(req.file.buffer);
-
 
       const [summary, mcqs] = await Promise.all([
         generateSummary(extractedText),
-        generateMCQs(extractedText), 
+        generateMCQs(extractedText),
       ]);
-
 
       const fileBase64 = req.file.buffer.toString("base64");
 
       res.json({
         summary,
-        mcqs, 
+        mcqs,
         fileData: req.file.buffer.toString("base64"),
         fileName: req.file.originalname,
         mimeType: req.file.mimetype,
@@ -187,15 +176,6 @@ app.post(
     }
   }
 );
-
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  });
-}
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
