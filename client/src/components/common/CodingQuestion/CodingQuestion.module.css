@@ -1,0 +1,75 @@
+.container {
+  margin-bottom: 12px;
+  border: 1px solid #eee;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.description {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.button {
+  padding: 8px 16px;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:disabled,
+.button[disabled] {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  color: crimson;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.resultsContainer {
+  margin-top: 8px;
+  background-color: #fafafa;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.testResult {
+  margin-bottom: 6px;
+}
+
+.pass {
+  color: green;
+}
+
+.fail {
+  color: red;
+}
