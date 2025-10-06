@@ -12,7 +12,7 @@ import MockTestPage from "../pages/MockTest/MockTestPage";
 const NAV_ITEMS = [
   { to: "/class-setup", label: "Class setup" },
   { to: "/pre-class", label: "Pre Class" },
-  { to: "/training", label: "Training" },
+  { to: "/training", label: "Lecture" },
   { to: "/post-class", label: "Post Class" },
   { to: "/practice", label: "Practice" },
   { to: "/test", label: "Test" },
